@@ -18,7 +18,7 @@ All the dependencies are included in the generated JAR.
 # Create the executable JAR
 $ mvn clean package -PfatJar
 # Execute the application
-$ java -jar ./target/fatJar-bigraphs-example-1.0-SNAPSHOT.jar
+$ java -jar ./target/fatJar-empty-project-skeleton-bigraphframework-1.0-SNAPSHOT.jar
 ```
 
 ### Classpath-Approach (1): Relative Libs-Folder
@@ -31,7 +31,7 @@ That is, the classpath in the `MANIFEST.MF` is set to `libs/` (relative to the g
 # Create the executable JAR
 $ mvn clean install -PlocalLib
 # Execute the application
-$ java -jar ./target/localLib-bigraphs-example-1.0-SNAPSHOT.jar
+$ java -jar ./target/localLib-empty-project-skeleton-bigraphframework-1.0-SNAPSHOT.jar
 ```
 
 ### Classpath-Approach (2): Local Maven Repository
@@ -43,5 +43,5 @@ That is, the classpath in the `MANIFEST.MF` is set to `~/.m2/repository/`.
 # Create the executable JAR
 $ mvn clean install -PlocalM2
 # Execute the application
-$ java -jar ./target/localM2-bigraphs-example-1.0-SNAPSHOT.jar
+$ java -jar ./target/localM2-empty-project-skeleton-bigraphframework-1.0-SNAPSHOT.jar
 ```
