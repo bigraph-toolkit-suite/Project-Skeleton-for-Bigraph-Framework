@@ -14,7 +14,7 @@ This main class `org.example.MainBigraphApplication` creates a signature and two
 
 All the dependencies are included in the generated JAR.
 
-```shell script
+```console
 # Create the executable JAR
 $ mvn clean package -PfatJar
 # Execute the application
@@ -27,7 +27,7 @@ The necessary dependencies are installed in your local Maven repository, and als
 generated JAR and referred to at runtime.
 That is, the classpath in the `MANIFEST.MF` is set to `libs/` (relative to the generated JAR).
 
-```shell script
+```console
 # Create the executable JAR
 $ mvn clean install -PlocalLib
 # Execute the application
@@ -39,7 +39,7 @@ $ java -jar ./target/localLib-empty-project-skeleton-bigraphframework-1.0-SNAPSH
 The necessary dependencies are installed in your local Maven repository, which is where the generated application refers to.
 That is, the classpath in the `MANIFEST.MF` is set to `~/.m2/repository/`.
 
-```shell script
+```console
 # Create the executable JAR
 $ mvn clean install -PlocalM2
 # Execute the application
