@@ -2,10 +2,9 @@ package org.example;
 
 import de.tudresden.inf.st.bigraphs.converter.bigrapher.BigrapherTransformator;
 import de.tudresden.inf.st.bigraphs.converter.jlibbig.JLibBigBigraphDecoder;
-import de.tudresden.inf.st.bigraphs.core.BigraphArtifacts;
 import de.tudresden.inf.st.bigraphs.core.BigraphComposite;
+import de.tudresden.inf.st.bigraphs.core.BigraphFileModelManagement;
 import de.tudresden.inf.st.bigraphs.core.ControlStatus;
-import de.tudresden.inf.st.bigraphs.core.EcoreBigraph;
 import de.tudresden.inf.st.bigraphs.core.datatypes.FiniteOrdinal;
 import de.tudresden.inf.st.bigraphs.core.datatypes.StringTypedName;
 import de.tudresden.inf.st.bigraphs.core.exceptions.IncompatibleSignatureException;
@@ -13,12 +12,12 @@ import de.tudresden.inf.st.bigraphs.core.exceptions.InvalidConnectionException;
 import de.tudresden.inf.st.bigraphs.core.exceptions.InvalidReactionRuleException;
 import de.tudresden.inf.st.bigraphs.core.exceptions.operations.IncompatibleInterfaceException;
 import de.tudresden.inf.st.bigraphs.core.factory.BigraphFactory;
-import de.tudresden.inf.st.bigraphs.core.impl.DefaultDynamicSignature;
-import de.tudresden.inf.st.bigraphs.core.impl.builder.DynamicSignatureBuilder;
 import de.tudresden.inf.st.bigraphs.core.impl.elementary.Linkings;
 import de.tudresden.inf.st.bigraphs.core.impl.elementary.Placings;
 import de.tudresden.inf.st.bigraphs.core.impl.pure.PureBigraph;
 import de.tudresden.inf.st.bigraphs.core.impl.pure.PureBigraphBuilder;
+import de.tudresden.inf.st.bigraphs.core.impl.signature.DefaultDynamicSignature;
+import de.tudresden.inf.st.bigraphs.core.impl.signature.DynamicSignatureBuilder;
 import de.tudresden.inf.st.bigraphs.core.reactivesystem.BigraphMatch;
 import de.tudresden.inf.st.bigraphs.core.reactivesystem.ParametricReactionRule;
 import de.tudresden.inf.st.bigraphs.core.reactivesystem.ReactionRule;
@@ -53,7 +52,7 @@ public class MainBigraphApplication {
 //        new MainBigraphApplication().getting_started();
 
         DefaultDynamicSignature signature = pureSignatureBuilder()
-                .newControl("A", 0).assign()
+                .addControl("A", 0)
                 .newControl(StringTypedName.of("B"), FiniteOrdinal.ofInteger(1)).assign()
                 .newControl().identifier(StringTypedName.of("C")).arity(FiniteOrdinal.ofInteger(2)).status(ControlStatus.ATOMIC).assign()
                 .create();
@@ -74,7 +73,7 @@ public class MainBigraphApplication {
         System.out.println("-------------------------------");
         BigraphComposite<DefaultDynamicSignature> bigraphComposite = ops(bigraph2).compose(bigraph1);
         PureBigraph result = bigraphComposite.getOuterBigraph();
-        BigraphArtifacts.exportAsInstanceModel((EcoreBigraph) result, System.out);
+        BigraphFileModelManagement.Store.exportAsInstanceModel(result, System.out);
 
         System.out.println("\n-------------------------------");
         System.out.println("# Reactive System Creation, Matching and Rewriting");
@@ -95,10 +94,10 @@ public class MainBigraphApplication {
             System.out.println("- Found a match for given agent and RR");
             BigraphMatch<PureBigraph> next = iterator.next();
             System.out.println("\n-> Context:");
-            BigraphArtifacts.exportAsInstanceModel(decoder.decode(((PureBigraphParametricMatch) next).getJLibMatchResult().getContext(), signature), System.out);
+            BigraphFileModelManagement.Store.exportAsInstanceModel(decoder.decode(((PureBigraphParametricMatch) next).getJLibMatchResult().getContext(), signature), System.out);
             PureBigraph rewritten = reactiveSystem.buildParametricReaction(reactiveSystem.getAgent(), next, reactiveSystem.getReactionRulesMap().get("r0"));
             System.out.println("\n-> Rewritten Agent:");
-            BigraphArtifacts.exportAsInstanceModel(rewritten, System.out);
+            BigraphFileModelManagement.Store.exportAsInstanceModel(rewritten, System.out);
         }
         System.out.println("-------------------------------");
 
