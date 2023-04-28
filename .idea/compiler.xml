@@ -9,8 +9,5 @@
         <module name="empty-project-skeleton-bigraphframework" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="empty-project-skeleton-bigraphframework" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>
