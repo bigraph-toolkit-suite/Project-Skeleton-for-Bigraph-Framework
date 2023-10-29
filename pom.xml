@@ -12,17 +12,17 @@
 
     <groupId>org.example</groupId>
     <artifactId>empty-project-skeleton-bigraphframework</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <start-class>org.example.MainBigraphApplication</start-class>
-        <bigraph.version>0.9.7-SNAPSHOT</bigraph.version>
+        <bigraph.version>1.0.0-SNAPSHOT</bigraph.version>
     </properties>
 
     <profiles>
@@ -164,25 +164,25 @@
     <dependencies>
         <!-- the core module -->
         <dependency>
-            <groupId>de.tudresden.inf.st.bigraphs</groupId>
+            <groupId>org.bigraphs.framework</groupId>
             <artifactId>bigraph-core</artifactId>
             <version>${bigraph.version}</version>
         </dependency>
         <!-- the simulation module -->
         <dependency>
-            <groupId>de.tudresden.inf.st.bigraphs</groupId>
+            <groupId>org.bigraphs.framework</groupId>
             <artifactId>bigraph-simulation</artifactId>
             <version>${bigraph.version}</version>
         </dependency>
         <!-- the visualization module -->
         <dependency>
-            <groupId>de.tudresden.inf.st.bigraphs</groupId>
+            <groupId>org.bigraphs.framework</groupId>
             <artifactId>bigraph-visualization</artifactId>
             <version>${bigraph.version}</version>
         </dependency>
         <!-- the converter module -->
         <dependency>
-            <groupId>de.tudresden.inf.st.bigraphs</groupId>
+            <groupId>org.bigraphs.framework</groupId>
             <artifactId>bigraph-converter</artifactId>
             <version>${bigraph.version}</version>
         </dependency>
@@ -193,9 +193,8 @@
             <snapshots>
                 <enabled>true</enabled> <!-- set false to disable snapshot releases -->
             </snapshots>
-            <id>STFactory</id>
-            <name>st-tu-dresden-artifactory</name>
-            <url>https://stgroup.jfrog.io/artifactory/st-tu-dresden-maven-repository/</url>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
     </repositories>
 </project>
