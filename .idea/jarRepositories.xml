@@ -21,10 +21,5 @@
       <option name="name" value="ossrh" />
       <option name="url" value="https://s01.oss.sonatype.org/content/repositories/snapshots" />
     </remote-repository>
-    <remote-repository>
-      <option name="id" value="STFactory" />
-      <option name="name" value="st-tu-dresden-artifactory" />
-      <option name="url" value="https://stgroup.jfrog.io/artifactory/st-tu-dresden-maven-repository/" />
-    </remote-repository>
   </component>
 </project>
