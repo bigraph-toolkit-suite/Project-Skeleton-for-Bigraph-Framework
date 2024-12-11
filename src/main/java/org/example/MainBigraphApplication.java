@@ -25,6 +25,7 @@ import org.bigraphs.framework.simulation.matching.AbstractBigraphMatcher;
 import org.bigraphs.framework.simulation.matching.MatchIterable;
 import org.bigraphs.framework.simulation.matching.pure.PureBigraphParametricMatch;
 import org.bigraphs.framework.simulation.matching.pure.PureReactiveSystem;
+import org.bigraphs.framework.visualization.SwingGraphStreamer;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -49,12 +50,13 @@ public class MainBigraphApplication {
 
     public static void main(String[] args) throws InvalidConnectionException, InvalidReactionRuleException, IncompatibleInterfaceException, IOException {
 
-//        new MainBigraphApplication().getting_started();
+        // Try out other example as well:
+//         new MainBigraphApplication().getting_started();
 
         DefaultDynamicSignature signature = pureSignatureBuilder()
                 .addControl("A", 0)
-                .newControl(StringTypedName.of("B"), FiniteOrdinal.ofInteger(1)).assign()
-                .newControl().identifier(StringTypedName.of("C")).arity(FiniteOrdinal.ofInteger(2)).status(ControlStatus.ATOMIC).assign()
+                .addControl("B", 1)
+                .addControl("C", 2, ControlStatus.ATOMIC)
                 .create();
 
         PureBigraph bigraph1 = pureBuilder(signature)
@@ -90,12 +92,13 @@ public class MainBigraphApplication {
         MatchIterable<BigraphMatch<PureBigraph>> match = matcher.match(reactiveSystem.getAgent(), reactiveSystem.getReactionRulesMap().get("r0"));
         Iterator<BigraphMatch<PureBigraph>> iterator = match.iterator();
         JLibBigBigraphDecoder decoder = new JLibBigBigraphDecoder();
+        PureBigraph rewritten = null;
         while (iterator.hasNext()) {
             System.out.println("- Found a match for given agent and RR");
             BigraphMatch<PureBigraph> next = iterator.next();
             System.out.println("\n-> Context:");
             BigraphFileModelManagement.Store.exportAsInstanceModel(decoder.decode(((PureBigraphParametricMatch) next).getJLibMatchResult().getContext(), signature), System.out);
-            PureBigraph rewritten = reactiveSystem.buildParametricReaction(reactiveSystem.getAgent(), next, reactiveSystem.getReactionRulesMap().get("r0"));
+            rewritten = reactiveSystem.buildParametricReaction(reactiveSystem.getAgent(), next, reactiveSystem.getReactionRulesMap().get("r0"));
             System.out.println("\n-> Rewritten Agent:");
             BigraphFileModelManagement.Store.exportAsInstanceModel(rewritten, System.out);
         }
@@ -108,6 +111,7 @@ public class MainBigraphApplication {
         String output = encoder.toString(reactiveSystem);
         System.out.println(output);
         System.out.println("-------------------------------");
+
     }
 
     public void getting_started() throws InvalidConnectionException, IncompatibleSignatureException, IncompatibleInterfaceException, IOException {
@@ -122,5 +126,11 @@ public class MainBigraphApplication {
         Linkings<DefaultDynamicSignature> linkings = pureLinkings(signature);
         Linkings<DefaultDynamicSignature>.Identity login = linkings.identity(StringTypedName.of("login"));
         BigraphComposite<DefaultDynamicSignature> composed = BigraphFactory.ops(merge).parallelProduct(login).compose(bigraph);
+
+        SwingGraphStreamer graphUI = new SwingGraphStreamer(composed.getOuterBigraph())
+                .renderRoots(true)
+                .renderSites(true);
+        graphUI.prepareSystemEnvironment();
+        graphUI.getGraphViewer();
     }
 }
