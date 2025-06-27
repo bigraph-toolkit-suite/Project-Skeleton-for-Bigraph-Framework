@@ -10,7 +10,18 @@ This main class `org.example.MainBigraphApplication` creates a signature and two
 
 ## Getting Started
 
-### Create a Fat-JAR / Uber-JAR
+This project is best worked with using IntelliJ IDEA:
+- Open the project in IntelliJ IDEA
+- Run the application
+
+## Build Configuration 
+
+This project works with Maven or Gradle for dependency management and building. 
+Below are the instructions to configure and build the project using Maven or Gradle.
+
+### Maven
+
+#### Create a Fat-JAR / Uber-JAR
 
 All the dependencies are included in the generated JAR.
 
@@ -21,7 +32,7 @@ $ mvn clean package -PfatJar
 $ java -jar ./target/fatJar-empty-project-skeleton-bigraphframework-VERSION.jar
 ```
 
-### Classpath-Approach (1): Relative Libs-Folder
+#### Classpath-Approach (1): Relative Libs-Folder
 
 The necessary dependencies are installed in your local Maven repository, and also copied in a local folder next to the 
 generated JAR and referred to at runtime.
@@ -34,7 +45,7 @@ $ mvn clean install -PlocalLib
 $ java -jar ./target/localLib-empty-project-skeleton-bigraphframework-VERSION.jar
 ```
 
-### Classpath-Approach (2): Local Maven Repository
+#### Classpath-Approach (2): Local Maven Repository
 
 The necessary dependencies are installed in your local Maven repository, which is where the generated application refers to.
 That is, the classpath in the `MANIFEST.MF` is set to `~/.m2/repository/`.
@@ -44,4 +55,18 @@ That is, the classpath in the `MANIFEST.MF` is set to `~/.m2/repository/`.
 $ mvn clean install -PlocalM2
 # Execute the application
 $ java -jar ./target/localM2-empty-project-skeleton-bigraphframework-VERSION.jar
+```
+
+### Gradle 
+
+Verify that you have Gradle >= 8.4 installed:
+
+```console
+$ gradle -v
+```
+
+Run the following command to build the project:
+
+```console
+$ gradle build
 ```
