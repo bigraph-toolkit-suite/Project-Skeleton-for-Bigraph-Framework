@@ -1,4 +1,4 @@
-# A Minimal Maven-based Project Skeleton for using Bigraph Framework
+# Quickstart Project Template for Bigraph Framework
 
 This project provides a quick introduction on how to setup, configure and use the Bigraph Framework.
 
