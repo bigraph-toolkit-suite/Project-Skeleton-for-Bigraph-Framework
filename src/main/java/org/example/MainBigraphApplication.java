@@ -16,7 +16,7 @@ import org.bigraphs.framework.core.impl.elementary.Linkings;
 import org.bigraphs.framework.core.impl.elementary.Placings;
 import org.bigraphs.framework.core.impl.pure.PureBigraph;
 import org.bigraphs.framework.core.impl.pure.PureBigraphBuilder;
-import org.bigraphs.framework.core.impl.signature.DefaultDynamicSignature;
+import org.bigraphs.framework.core.impl.signature.DynamicSignature;
 import org.bigraphs.framework.core.impl.signature.DynamicSignatureBuilder;
 import org.bigraphs.framework.core.reactivesystem.BigraphMatch;
 import org.bigraphs.framework.core.reactivesystem.ParametricReactionRule;
@@ -51,29 +51,30 @@ public class MainBigraphApplication {
     public static void main(String[] args) throws InvalidConnectionException, InvalidReactionRuleException, IncompatibleInterfaceException, IOException {
 
         // Try out other example as well:
-//         new MainBigraphApplication().getting_started();
+        // Use Arrows Keys and Page Up/Down for Navigation and Zooming
+         new MainBigraphApplication().getting_started();
 
-        DefaultDynamicSignature signature = pureSignatureBuilder()
-                .addControl("A", 0)
-                .addControl("B", 1)
-                .addControl("C", 2, ControlStatus.ATOMIC)
+        DynamicSignature signature = pureSignatureBuilder()
+                .add("A", 0)
+                .add("B", 1)
+                .add("C", 2, ControlStatus.ATOMIC)
                 .create();
 
         PureBigraph bigraph1 = pureBuilder(signature)
-                .createRoot()
-                .addChild("A").down().addChild("B")
-                .createBigraph();
+                .root()
+                .child("A").down().child("B")
+                .create();
 
         PureBigraph bigraph2 = pureBuilder(signature)
-                .createRoot()
-                .addChild("C", "alice")
-                .addSite()
-                .createBigraph();
+                .root()
+                .child("C", "alice")
+                .site()
+                .create();
 
         System.out.println("\n-------------------------------");
         System.out.println("# Composing two bigraphs");
         System.out.println("-------------------------------");
-        BigraphComposite<DefaultDynamicSignature> bigraphComposite = ops(bigraph2).compose(bigraph1);
+        BigraphComposite<DynamicSignature> bigraphComposite = ops(bigraph2).compose(bigraph1);
         PureBigraph result = bigraphComposite.getOuterBigraph();
         BigraphFileModelManagement.Store.exportAsInstanceModel(result, System.out);
 
@@ -83,8 +84,8 @@ public class MainBigraphApplication {
         PureReactiveSystem reactiveSystem = new PureReactiveSystem();
         reactiveSystem.setAgent(result);
 
-        PureBigraph redex = pureBuilder(signature).createRoot().addChild("B").createBigraph();
-        PureBigraph reactum = pureBuilder(signature).createRoot().addChild("A").createBigraph();
+        PureBigraph redex = pureBuilder(signature).root().child("B").create();
+        PureBigraph reactum = pureBuilder(signature).root().child("A").create();
         ReactionRule<PureBigraph> rr = new ParametricReactionRule<>(redex, reactum);
         reactiveSystem.addReactionRule(rr);
 
@@ -116,16 +117,16 @@ public class MainBigraphApplication {
 
     public void getting_started() throws InvalidConnectionException, IncompatibleSignatureException, IncompatibleInterfaceException, IOException {
         DynamicSignatureBuilder signatureBuilder = pureSignatureBuilder();
-        DefaultDynamicSignature signature = signatureBuilder.newControl().identifier("User").arity(1).status(ControlStatus.ATOMIC).assign().newControl(StringTypedName.of("Computer"), FiniteOrdinal.ofInteger(2)).assign().create();
-        PureBigraphBuilder<DefaultDynamicSignature> builder = pureBuilder(signature);
-        builder.createRoot().addChild("User", "login").addChild("Computer", "login");
-        PureBigraph bigraph = builder.createRoot().addChild("User", "login").addChild("Computer", "login").createBigraph();
+        DynamicSignature signature = signatureBuilder.newControl().identifier("User").arity(1).status(ControlStatus.ATOMIC).assign().newControl(StringTypedName.of("Computer"), FiniteOrdinal.ofInteger(2)).assign().create();
+        PureBigraphBuilder<DynamicSignature> builder = pureBuilder(signature);
+        builder.root().child("User", "login").child("Computer", "login");
+        PureBigraph bigraph = builder.root().child("User", "login").child("Computer", "login").create();
 
-        Placings<DefaultDynamicSignature> placings = purePlacings(signature);
-        Placings<DefaultDynamicSignature>.Merge merge = placings.merge(2);
-        Linkings<DefaultDynamicSignature> linkings = pureLinkings(signature);
-        Linkings<DefaultDynamicSignature>.Identity login = linkings.identity(StringTypedName.of("login"));
-        BigraphComposite<DefaultDynamicSignature> composed = BigraphFactory.ops(merge).parallelProduct(login).compose(bigraph);
+        Placings<DynamicSignature> placings = purePlacings(signature);
+        Placings<DynamicSignature>.Merge merge = placings.merge(2);
+        Linkings<DynamicSignature> linkings = pureLinkings(signature);
+        Linkings<DynamicSignature>.Identity login = linkings.identity(StringTypedName.of("login"));
+        BigraphComposite<DynamicSignature> composed = BigraphFactory.ops(merge).parallelProduct(login).compose(bigraph);
 
         SwingGraphStreamer graphUI = new SwingGraphStreamer(composed.getOuterBigraph())
                 .renderRoots(true)
