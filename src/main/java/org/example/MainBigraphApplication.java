@@ -117,7 +117,10 @@ public class MainBigraphApplication {
 
     public void getting_started() throws InvalidConnectionException, IncompatibleSignatureException, IncompatibleInterfaceException, IOException {
         DynamicSignatureBuilder signatureBuilder = pureSignatureBuilder();
-        DynamicSignature signature = signatureBuilder.newControl().identifier("User").arity(1).status(ControlStatus.ATOMIC).assign().newControl(StringTypedName.of("Computer"), FiniteOrdinal.ofInteger(2)).assign().create();
+        DynamicSignature signature = signatureBuilder
+                .add("User", 1, ControlStatus.ATOMIC)
+                .add("Computer", 2)
+                .create();
         PureBigraphBuilder<DynamicSignature> builder = pureBuilder(signature);
         builder.root().child("User", "login").child("Computer", "login");
         PureBigraph bigraph = builder.root().child("User", "login").child("Computer", "login").create();
