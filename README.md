@@ -25,7 +25,7 @@ Below are the instructions to configure and build the project using Maven or Gra
 
 All the dependencies are included in the generated JAR.
 
-```console
+```shell
 # Create the executable JAR
 $ mvn clean package -PfatJar
 # Execute the application
@@ -38,7 +38,7 @@ The necessary dependencies are installed in your local Maven repository, and als
 generated JAR and referred to at runtime.
 That is, the classpath in the `MANIFEST.MF` is set to `libs/` (relative to the generated JAR).
 
-```console
+```shell
 # Create the executable JAR
 $ mvn clean install -PlocalLib
 # Execute the application
@@ -50,7 +50,7 @@ $ java -jar ./target/localLib-empty-project-skeleton-bigraphframework-VERSION.ja
 The necessary dependencies are installed in your local Maven repository, which is where the generated application refers to.
 That is, the classpath in the `MANIFEST.MF` is set to `~/.m2/repository/`.
 
-```console
+```shell
 # Create the executable JAR
 $ mvn clean install -PlocalM2
 # Execute the application
@@ -61,12 +61,32 @@ $ java -jar ./target/localM2-empty-project-skeleton-bigraphframework-VERSION.jar
 
 Verify that you have Gradle >= 8.4 installed:
 
-```console
+```shell
 $ gradle -v
 ```
 
 Run the following command to build the project:
-
-```console
+```shell
 $ gradle build
+```
+
+To run the project:
+```shell
+$ ./gradlew run
+```
+
+**Gradle Wrapper**
+
+You can execute the Gradle build with the help of the Gradle Wrapper.
+
+To use the Gradle Wrapper on a Windows machine for this project:
+```shell
+$ gradlew.bat build
+$ gradlew.bat run
+```
+
+On a Linux machine:
+```shell
+$ ./gradlew build
+$ ./gradlew run
 ```

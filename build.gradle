@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'org.example'
-version '2.1.0'
+version '2.3.0'
 
 repositories {
     maven {
@@ -17,10 +17,10 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.bigraphs.framework:bigraph-core:2.1.0'
-    implementation 'org.bigraphs.framework:bigraph-simulation:2.1.0'
-    implementation 'org.bigraphs.framework:bigraph-visualization:2.1.0'
-    implementation 'org.bigraphs.framework:bigraph-converter:2.1.0'
+    implementation 'org.bigraphs.framework:bigraph-core:2.3.0'
+    implementation 'org.bigraphs.framework:bigraph-simulation:2.3.0'
+    implementation 'org.bigraphs.framework:bigraph-visualization:2.3.0'
+    implementation 'org.bigraphs.framework:bigraph-converter:2.3.0'
     implementation 'org.slf4j:slf4j-api:2.0.9'
     implementation 'org.slf4j:slf4j-nop:2.0.7'
 }
@@ -31,8 +31,8 @@ application {
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
-    sourceCompatibility = '17'
-    targetCompatibility = '17'
+    sourceCompatibility = '21'
+    targetCompatibility = '21'
 }
 
 // Apply duplicates strategy to both distTar and distZip tasks
