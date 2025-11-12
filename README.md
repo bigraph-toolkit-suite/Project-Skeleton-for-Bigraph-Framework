@@ -1,6 +1,6 @@
 # Quickstart Project Template for Bigraph Framework
 
-This project provides a quick introduction on how to setup, configure and use the Bigraph Framework.
+This project provides a quick introduction on how to use and include the Bigraph Framework.
 
 This main class `org.example.MainBigraphApplication` creates a signature and two bigraphs first, and performs the following operations afterwards:
 - The two bigraphs are composed
