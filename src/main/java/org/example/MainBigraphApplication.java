@@ -22,7 +22,7 @@ import org.bigraphs.framework.core.reactivesystem.ParametricReactionRule;
 import org.bigraphs.framework.core.reactivesystem.ReactionRule;
 import org.bigraphs.framework.simulation.matching.AbstractBigraphMatcher;
 import org.bigraphs.framework.simulation.matching.MatchIterable;
-import org.bigraphs.framework.simulation.matching.pure.PureBigraphParametricMatch;
+import org.bigraphs.framework.simulation.matching.pure.PureBigraphMatch;
 import org.bigraphs.framework.simulation.matching.pure.PureReactiveSystem;
 import org.bigraphs.framework.visualization.SwingGraphStreamer;
 
@@ -97,7 +97,7 @@ public class MainBigraphApplication {
             System.out.println("- Found a match for given agent and RR");
             BigraphMatch<PureBigraph> next = iterator.next();
             System.out.println("\n-> Context:");
-            BigraphFileModelManagement.Store.exportAsInstanceModel(decoder.decode(((PureBigraphParametricMatch) next).getJLibMatchResult().getContext(), signature), System.out);
+            BigraphFileModelManagement.Store.exportAsInstanceModel(decoder.decode(((PureBigraphMatch) next).getJLibMatchResult().getContext(), signature), System.out);
             rewritten = reactiveSystem.buildParametricReaction(reactiveSystem.getAgent(), next, reactiveSystem.getReactionRulesMap().get("r0"));
             System.out.println("\n-> Rewritten Agent:");
             BigraphFileModelManagement.Store.exportAsInstanceModel(rewritten, System.out);

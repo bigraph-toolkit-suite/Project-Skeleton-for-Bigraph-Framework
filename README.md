@@ -7,17 +7,21 @@ This main class `org.example.MainBigraphApplication` creates a signature and two
 - A reactive system is created, a matching conducted and the agent rewritten
 - A bigraph is converted to the BigraphER specification language format
 
+**Screenshot**
+
+<img src="./docs/screenshot.png" style="zoom: 45%;" alt="Screenshot"/>
 
 ## Getting Started
 
-This project is best worked with using IntelliJ IDEA:
-- Open the project in IntelliJ IDEA
-- Run the application
+This project is best worked with using:
+- Open the project in IntelliJ IDEA / Eclipse / Visual Code / ...
+- Run the application within the IDE
 
-## Build Configuration 
+Alternatively, the application can be built and started from the command line.
 
-This project works with Maven or Gradle for dependency management and building. 
-Below are the instructions to configure and build the project using Maven or Gradle.
+The project supports both Maven and Gradle for dependency management and builds.  
+The following sections describe how to configure and build the project using either tool.
+
 
 ### Maven
 
@@ -29,7 +33,7 @@ All the dependencies are included in the generated JAR.
 # Create the executable JAR
 $ mvn clean package -PfatJar
 # Execute the application
-$ java -jar ./target/fatJar-empty-project-skeleton-bigraphframework-VERSION.jar
+$ java -jar ./target/fatJar-empty-project-skeleton-bigraphframework-2.3.6.jar
 ```
 
 #### Classpath-Approach (1): Relative Libs-Folder
@@ -42,7 +46,7 @@ That is, the classpath in the `MANIFEST.MF` is set to `libs/` (relative to the g
 # Create the executable JAR
 $ mvn clean install -PlocalLib
 # Execute the application
-$ java -jar ./target/localLib-empty-project-skeleton-bigraphframework-VERSION.jar
+$ java -jar ./target/localLib-empty-project-skeleton-bigraphframework-2.3.6.jar
 ```
 
 #### Classpath-Approach (2): Local Maven Repository
@@ -54,7 +58,7 @@ That is, the classpath in the `MANIFEST.MF` is set to `~/.m2/repository/`.
 # Create the executable JAR
 $ mvn clean install -PlocalM2
 # Execute the application
-$ java -jar ./target/localM2-empty-project-skeleton-bigraphframework-VERSION.jar
+$ java -jar ./target/localM2-empty-project-skeleton-bigraphframework-2.3.6.jar
 ```
 
 ### Gradle 
@@ -75,7 +79,7 @@ To run the project:
 $ ./gradlew run
 ```
 
-**Gradle Wrapper**
+**Using the Gradle Wrapper**
 
 You can execute the Gradle build with the help of the Gradle Wrapper.
 

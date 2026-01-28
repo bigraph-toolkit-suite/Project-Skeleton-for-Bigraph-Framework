@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'org.example'
-version '2.3.5'
+version '2.3.6'
 
 repositories {
     mavenLocal()
@@ -18,10 +18,10 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.bigraphs.framework:bigraph-core:2.3.5'
-    implementation 'org.bigraphs.framework:bigraph-simulation:2.3.5'
-    implementation 'org.bigraphs.framework:bigraph-visualization:2.3.5'
-    implementation 'org.bigraphs.framework:bigraph-converter:2.3.5'
+    implementation 'org.bigraphs.framework:bigraph-core:2.3.6'
+    implementation 'org.bigraphs.framework:bigraph-simulation:2.3.6'
+    implementation 'org.bigraphs.framework:bigraph-visualization:2.3.6'
+    implementation 'org.bigraphs.framework:bigraph-converter:2.3.6'
     implementation 'org.slf4j:slf4j-api:2.0.9'
     implementation 'org.slf4j:slf4j-nop:2.0.7'
 }
