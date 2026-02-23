@@ -33,7 +33,7 @@ All the dependencies are included in the generated JAR.
 # Create the executable JAR
 $ mvn clean package -PfatJar
 # Execute the application
-$ java -jar ./target/fatJar-empty-project-skeleton-bigraphframework-2.3.6.jar
+$ java -jar ./target/fatJar-empty-project-skeleton-bigraphframework-2.4.0.jar
 ```
 
 #### Classpath-Approach (1): Relative Libs-Folder
@@ -46,7 +46,7 @@ That is, the classpath in the `MANIFEST.MF` is set to `libs/` (relative to the g
 # Create the executable JAR
 $ mvn clean install -PlocalLib
 # Execute the application
-$ java -jar ./target/localLib-empty-project-skeleton-bigraphframework-2.3.6.jar
+$ java -jar ./target/localLib-empty-project-skeleton-bigraphframework-2.4.0.jar
 ```
 
 #### Classpath-Approach (2): Local Maven Repository
@@ -58,7 +58,7 @@ That is, the classpath in the `MANIFEST.MF` is set to `~/.m2/repository/`.
 # Create the executable JAR
 $ mvn clean install -PlocalM2
 # Execute the application
-$ java -jar ./target/localM2-empty-project-skeleton-bigraphframework-2.3.6.jar
+$ java -jar ./target/localM2-empty-project-skeleton-bigraphframework-2.4.0.jar
 ```
 
 ### Gradle 
@@ -76,7 +76,7 @@ $ gradle build
 
 To run the project:
 ```shell
-$ ./gradlew run
+$ gradle run
 ```
 
 **Using the Gradle Wrapper**
