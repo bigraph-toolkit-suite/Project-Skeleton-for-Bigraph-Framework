@@ -89,8 +89,8 @@ public class MainBigraphApplication {
         reactiveSystem.addReactionRule(rr);
 
         AbstractBigraphMatcher<PureBigraph> matcher = AbstractBigraphMatcher.create(PureBigraph.class);
-        MatchIterable<BigraphMatch<PureBigraph>> match = matcher.match(reactiveSystem.getAgent(), reactiveSystem.getReactionRulesMap().get("r0"));
-        Iterator<BigraphMatch<PureBigraph>> iterator = match.iterator();
+        MatchIterable<PureBigraphMatch> match = (MatchIterable<PureBigraphMatch>) matcher.match(reactiveSystem.getAgent(), reactiveSystem.getReactionRulesMap().get("r0"));
+        Iterator<PureBigraphMatch> iterator = match.iterator();
         JLibBigBigraphDecoder decoder = new JLibBigBigraphDecoder();
         PureBigraph rewritten = null;
         while (iterator.hasNext()) {
